@@ -1,0 +1,325 @@
+-- ==========================================
+-- Delta Executor - Auto Full Sequence with Place ID Check
+-- For: Attack on Titan Revolution
+-- ==========================================
+
+local Players = game:GetService("Players")
+local GuiService = game:GetService("GuiService")
+local VirtualInputManager = game:GetService("VirtualInputManager")
+
+local player = Players.LocalPlayer
+local playerGui = player:WaitForChild("PlayerGui")
+
+-- ==========================================
+-- ⚙️ ตั้งค่า Place ID ที่ต้องการ
+-- ==========================================
+local TARGET_PLACE_ID = 0 -- ใส่ Place ID ที่ต้องการให้ทำงาน
+
+-- ==========================================
+-- ฟังก์ชันกดปุ่ม Virtual Key
+-- ==========================================
+local function pressKey(keyCode)
+    VirtualInputManager:SendKeyEvent(true, keyCode, false, game)
+    task.wait(0.05)
+    VirtualInputManager:SendKeyEvent(false, keyCode, false, game)
+    task.wait(0.1)
+end
+
+-- ==========================================
+-- ฟังก์ชันคลิกปุ่ม GUI
+-- ==========================================
+local function clickButton(button)
+    if not button then return false end
+    if button.Visible == false then return false end
+    
+    local pos = button.AbsolutePosition
+    local size = button.AbsoluteSize
+    local centerX = pos.X + (size.X / 2)
+    local centerY = pos.Y + (size.Y / 2)
+    
+    VirtualInputManager:SendMouseMoveEvent(centerX, centerY, game)
+    task.wait(0.1)
+    VirtualInputManager:SendMouseButtonEvent(centerX, centerY, 0, true, game, 0)
+    task.wait(0.05)
+    VirtualInputManager:SendMouseButtonEvent(centerX, centerY, 0, false, game, 0)
+    task.wait(0.2)
+    
+    pcall(function()
+        if button:IsA("GuiButton") then
+            button.MouseButton1Click:Fire()
+            button.MouseButton1Down:Fire()
+            button.MouseButton1Up:Fire()
+        end
+        if button.Activated then
+            button.Activated:Fire()
+        end
+    end)
+    
+    return true
+end
+
+-- ==========================================
+-- ฟังก์ชันหาปุ่มตาม Text
+-- ==========================================
+local function findButtonByText(searchText, parent)
+    parent = parent or playerGui
+    
+    for _, gui in ipairs(parent:GetDescendants()) do
+        if gui:IsA("TextButton") or gui:IsA("ImageButton") then
+            if gui.Text and gui.Text:lower() == searchText:lower() then
+                if gui.Visible ~= false then
+                    return gui
+                end
+            end
+        end
+    end
+    return nil
+end
+
+-- ==========================================
+-- ฟังก์ชันหาปุ่มฝั่งซ้ายสุด
+-- ==========================================
+local function findLeftmostButton(searchText, parent)
+    parent = parent or playerGui
+    local leftmostButton = nil
+    local leftmostX = math.huge
+    
+    for _, gui in ipairs(parent:GetDescendants()) do
+        if gui:IsA("TextButton") or gui:IsA("ImageButton") then
+            local textMatch = false
+            if gui.Text and gui.Text:lower():find(searchText:lower()) then
+                textMatch = true
+            end
+            if gui.Name:lower():find(searchText:lower()) then
+                textMatch = true
+            end
+            
+            if textMatch and gui.Visible ~= false then
+                local pos = gui.AbsolutePosition
+                if pos.X < leftmostX then
+                    leftmostX = pos.X
+                    leftmostButton = gui
+                end
+            end
+        end
+    end
+    
+    return leftmostButton
+end
+
+-- ==========================================
+-- ฟังก์ชันรอให้ปุ่มปรากฏ
+-- ==========================================
+local function waitForButton(searchText, timeout)
+    timeout = timeout or 15
+    local startTime = tick()
+    
+    while tick() - startTime < timeout do
+        local button = findButtonByText(searchText)
+        if button and button.Visible then
+            return button
+        end
+        task.wait(0.2)
+    end
+    
+    return nil
+end
+
+-- ==========================================
+-- ฟังก์ชันรอให้ UI โหลด
+-- ==========================================
+local function waitForUILoad()
+    if not game:IsLoaded() then
+        game.Loaded:Wait()
+    end
+    
+    local startTime = tick()
+    while not player:FindFirstChild("PlayerGui") and tick() - startTime < 10 do
+        task.wait(0.1)
+    end
+    
+    task.wait(3)
+end
+
+-- ==========================================
+-- CHECK PLACE ID
+-- ==========================================
+local function checkPlaceId()
+    if TARGET_PLACE_ID == 0 then
+        print("⚠️ TARGET_PLACE_ID ยังไม่ได้ตั้งค่า (ปัจจุบัน = 0)")
+        print("📍 Place ID ปัจจุบัน:", game.PlaceId)
+        print("❌ โปรดแก้ไข TARGET_PLACE_ID ก่อนใช้งาน")
+        return false
+    end
+    
+    if game.PlaceId ~= TARGET_PLACE_ID then
+        print("❌ Place ID ไม่ตรงกัน!")
+        print("📍 ปัจจุบัน:", game.PlaceId)
+        print("🎯 ตั้งไว้:", TARGET_PLACE_ID)
+        print("⛔ หยุดทำงาน")
+        return false
+    end
+    
+    print("✅ Place ID ตรงกัน:", game.PlaceId)
+    return true
+end
+
+-- ==========================================
+-- STEP 1: กด SELECT (Slot A ฝั่งซ้าย)
+-- ==========================================
+local function step1_clickSelect()
+    print("🎯 STEP 1: Waiting for SELECT...")
+    
+    local selectButton = waitForButton("SELECT", 15)
+    if not selectButton then
+        print("❌ SELECT not found")
+        return false
+    end
+    
+    local leftmostSelect = findLeftmostButton("SELECT")
+    if leftmostSelect then
+        print("✅ Clicking SELECT (Slot A - leftmost)")
+        clickButton(leftmostSelect)
+    else
+        print("✅ Clicking SELECT")
+        clickButton(selectButton)
+    end
+    
+    task.wait(2)
+    return true
+end
+
+-- ==========================================
+-- STEP 2: กด PLAY
+-- ==========================================
+local function step2_clickPlay()
+    print("🎯 STEP 2: Waiting for PLAY...")
+    
+    local playButton = waitForButton("PLAY", 15)
+    if not playButton then
+        print("❌ PLAY not found")
+        return false
+    end
+    
+    print("✅ Clicking PLAY")
+    clickButton(playButton)
+    
+    task.wait(2)
+    return true
+end
+
+-- ==========================================
+-- STEP 3: กด NO (Skip Tutorial)
+-- ==========================================
+local function step3_clickNo()
+    print("🎯 STEP 3: Waiting for NO (Tutorial popup)...")
+    
+    local noButton = waitForButton("NO", 20)
+    if not noButton then
+        print("⚠️ NO not found - Tutorial may not appear")
+        return false
+    end
+    
+    print("✅ Clicking NO (Skip Tutorial)")
+    clickButton(noButton)
+    
+    task.wait(2)
+    return true
+end
+
+-- ==========================================
+-- STEP 4: กด LOBBY (ฝั่งซ้าย)
+-- ==========================================
+local function step4_clickLobby()
+    print("🎯 STEP 4: Waiting for LOBBY...")
+    
+    local lobbyButton = waitForButton("LOBBY", 15)
+    if not lobbyButton then
+        print("❌ LOBBY not found")
+        return false
+    end
+    
+    -- หา LOBBY ฝั่งซ้ายสุด
+    local leftmostLobby = findLeftmostButton("LOBBY")
+    if leftmostLobby then
+        print("✅ Clicking LOBBY (leftmost)")
+        clickButton(leftmostLobby)
+    else
+        print("✅ Clicking LOBBY")
+        clickButton(lobbyButton)
+    end
+    
+    task.wait(1)
+    return true
+end
+
+-- ==========================================
+-- MAIN EXECUTION
+-- ==========================================
+
+print("========================================")
+print("🚀 Auto: SELECT → PLAY → NO → LOBBY")
+print("========================================")
+
+task.spawn(function()
+    waitForUILoad()
+    
+    -- Check Place ID ก่อนเริ่ม
+    if not checkPlaceId() then
+        return
+    end
+    
+    print("🎮 Starting automation...")
+    
+    -- Step 1: SELECT
+    if not step1_clickSelect() then return end
+    
+    -- Step 2: PLAY
+    if not step2_clickPlay() then return end
+    
+    -- Step 3: NO
+    step3_clickNo()
+    
+    -- Step 4: LOBBY
+    if not step4_clickLobby() then return end
+    
+    print("========================================")
+    print("✅ All steps completed!")
+    print("========================================")
+end)
+
+-- ==========================================
+-- Auto Retry สำรอง
+-- ==========================================
+task.spawn(function()
+    task.wait(15)
+    
+    local selectBtn = findButtonByText("SELECT")
+    if selectBtn and selectBtn.Visible then
+        print("🔄 Retry: SELECT")
+        local leftmost = findLeftmostButton("SELECT")
+        clickButton(leftmost or selectBtn)
+        task.wait(2)
+    end
+    
+    local playBtn = findButtonByText("PLAY")
+    if playBtn and playBtn.Visible then
+        print("🔄 Retry: PLAY")
+        clickButton(playBtn)
+        task.wait(2)
+    end
+    
+    local noBtn = findButtonByText("NO")
+    if noBtn and noBtn.Visible then
+        print("🔄 Retry: NO")
+        clickButton(noBtn)
+        task.wait(2)
+    end
+    
+    local lobbyBtn = findButtonByText("LOBBY")
+    if lobbyBtn and lobbyBtn.Visible then
+        print("🔄 Retry: LOBBY")
+        local leftmost = findLeftmostButton("LOBBY")
+        clickButton(leftmost or lobbyBtn)
+    end
+end)
