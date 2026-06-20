@@ -239,7 +239,6 @@ local function step4_clickLobby()
         return false
     end
     
-    -- หา LOBBY ฝั่งซ้ายสุด
     local leftmostLobby = findLeftmostButton("LOBBY")
     if leftmostLobby then
         print("✅ Clicking LOBBY (leftmost)")
@@ -264,23 +263,15 @@ print("========================================")
 task.spawn(function()
     waitForUILoad()
     
-    -- Check Place ID ก่อนเริ่ม
     if not checkPlaceId() then
         return
     end
     
     print("🎮 Starting automation...")
     
-    -- Step 1: SELECT
     if not step1_clickSelect() then return end
-    
-    -- Step 2: PLAY
     if not step2_clickPlay() then return end
-    
-    -- Step 3: NO
     step3_clickNo()
-    
-    -- Step 4: LOBBY
     if not step4_clickLobby() then return end
     
     print("========================================")
@@ -289,7 +280,7 @@ task.spawn(function()
 end)
 
 -- ==========================================
--- Auto Retry สำรอง
+-- Auto Retry
 -- ==========================================
 task.spawn(function()
     task.wait(15)
