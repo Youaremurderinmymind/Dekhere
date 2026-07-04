@@ -2,11 +2,11 @@ script_key = "UQpESicdZRDIRqXhxUnrExkvHcjGTpDz"
 
 getgenv().PS99Config = {
 
-    ["FPS Cap"] = 3,
+    ["FPS Cap"] = 9,
 
     ["Webhook"] = {
-        ["Webhook URL"] = "",
-        ["ID"]          = { "" },
+        ["Webhook URL"] = "https://discord.com/api/webhooks/1521062740809093204/41Uf_1zrFZK-QI3oNN_lhPVVuG7BN2zOssYUKpiW5sR2Vpgcg5CHmCR0EOV1zuvCmBzJ",
+        ["ID"]          = { "1464473600940838997" },
         ["Alert Huges"] = true,
     },
 
@@ -29,13 +29,13 @@ getgenv().PS99Config = {
 
     ["Mail"] = {
         ["Claim Mails"]   = true,
-        ["Mail To"]       = "",
+        ["Mail To"]       = "icemlg326",
         ["Items To Mail"] = {
             ["Huge Soccer Cat"] = 1,
             ["Titanic"]         = "all",
             "Huge",
         },
-        ["Mail Message"]  = "gg",
+        ["Mail Message"]  = "Xept",
     },
 }
 
