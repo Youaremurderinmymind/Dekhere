@@ -1,5 +1,3 @@
-getgenv().Key = "MARU-6d8266d8f2-dgoxp-66u0r"
-getgenv().id = "1464473600940838997"
 getgenv().Script_Mode = "Kaitun_Script"
 _G.OneClickSettings = {
     ["MainIsFarmLevel"] = true,
@@ -28,4 +26,7 @@ _G.OneClickSettings = {
     ["Farm Shark Anchor"] = true,
     ["Cursed Dual Katana"] = true
 }
+getgenv().Key = "MARU-6d8266d8f2-dgoxp-66u0r"
+getgenv().id = "1464473600940838997"
+getgenv().Script_Mode = "Kaitun_Script"
 loadstring(game:HttpGet("https://cdn.maruhub.online/s/mobile"))()
