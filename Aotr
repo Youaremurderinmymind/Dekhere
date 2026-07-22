@@ -1,4 +1,4 @@
 getgenv().Key = "MARU-6d8266d8f2-dgoxp-66u0r"
 getgenv().id = "1464473600940838997"
-getgenv().Script_Mode = "Kaitun_Script"
+_G.Script_Language = "Thai"
 loadstring(game:HttpGet("https://cdn.maruhub.online/s/mobile"))()
