@@ -20,7 +20,7 @@ getgenv().Key = "ef2905d9dfc123e273d49e0a"
         ["White Screen"] = false,
         ["Lock Fps"] = {
             ["Enabled"] = true,
-            ["FPS"] = 69,
+            ["FPS"] = 30,
         },
         ["Get Items"] = {
             ["Saber"] = true,
