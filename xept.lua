@@ -1,12 +1,12 @@
 script_key = "GQuLsGHhekqCzSMgjKmAOMBEyVAtnrKO"
 
 getgenv().AEConfig = {
-    ["Summon At Gems"] = 100000,
+    ["Summon At Gems"] = 10000,
     ["Set FPS"] = 60,
 
     ["Target Summon"] = {
         ["Enabled"] = true,
-        ["Start Gems"] = 100000,
+        ["Start Gems"] = 10000,
         ["Before Raids"] = true,
         ["Fallback"] = "Farm Kenpachi",
     },
@@ -23,8 +23,8 @@ getgenv().AEConfig = {
         ["Target"] = 100000,
     },
 
-    ["Raids"] = false,
-    ["Raid Minimum Level"] = 25,
+    ["Raids"] = true,
+    ["Raid Minimum Level"] = 50,
 
     ["Raid Equipment"] = {
         ["Enabled"] = true,
