@@ -12,18 +12,18 @@ getgenv().AEConfig = {
     },
 
     ["Target Units"] = {
-        ["Shadow"] = 2,
+        ["Shadow"] = 10,
     },
 
     -- After obtaining Megumi, farm to an account Level or Gems target.
     ["After Unit Farm"] = {
         ["Enabled"] = true,
         ["Unit"] = "Megumi",
-        ["Goal"] = "Level", -- "Level" or "Gems"
-        ["Target"] = 100,
+        ["Goal"] = "Gems", -- "Level" or "Gems"
+        ["Target"] = 100000,
     },
 
-    ["Raids"] = true,
+    ["Raids"] = false,
     ["Raid Minimum Level"] = 25,
 
     ["Raid Equipment"] = {
