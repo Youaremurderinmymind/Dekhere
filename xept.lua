@@ -20,7 +20,7 @@ getgenv().AEConfig = {
         ["Enabled"] = true,
         ["Unit"] = "Megumi",
         ["Goal"] = "Level", -- "Level" or "Gems"
-        ["Target"] = 50,
+        ["Target"] = 100,
     },
 
     ["Raids"] = true,
