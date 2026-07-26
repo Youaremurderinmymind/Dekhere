@@ -16,7 +16,7 @@ getgenv().AEConfig = {
     },
 
     ["After Unit Farm"] = {
-        ["Enabled"] = false,
+        ["Enabled"] = true,
         ["Unit"] = "Megumi",
         ["Goal"] = "gems", -- "Level" or "Gems"
         ["Target"] = 100000,
