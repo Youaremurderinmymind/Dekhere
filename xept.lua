@@ -1,12 +1,12 @@
 script_key = "GQuLsGHhekqCzSMgjKmAOMBEyVAtnrKO"
 
 getgenv().AEConfig = {
-    ["Summon At Gems"] = 10000,
+    ["Summon At Gems"] = 100000,
     ["Set FPS"] = 0, -- 0 = no FPS cap
 
     ["Target Summon"] = {
-        ["Enabled"] = true,
-        ["Start Gems"] = 10000,
+        ["Enabled"] = false,
+        ["Start Gems"] = 100000,
         ["Before Raids"] = true,
         ["Fallback"] = "Farm Kenpachi", -- "Farm Kenpachi" or "Farm Gems"
     },
@@ -18,8 +18,8 @@ getgenv().AEConfig = {
     ["After Unit Farm"] = {
         ["Enabled"] = false,
         ["Unit"] = "Megumi",
-        ["Goal"] = "Level", -- "Level" or "Gems"
-        ["Target"] = 50,
+        ["Goal"] = "gems", -- "Level" or "Gems"
+        ["Target"] = 100000,
     },
 
     ["Raids"] = true,
