@@ -22,7 +22,7 @@ getgenv().AEConfig = {
         ["Target"] = 100000,
     },
 
-    ["Raids"] = true,
+    ["Raids"] = false,
     ["Raid Minimum Level"] = 70,
 
     ["Raid Equipment"] = {
