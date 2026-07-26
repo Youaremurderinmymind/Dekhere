@@ -2,36 +2,65 @@ script_key = "GQuLsGHhekqCzSMgjKmAOMBEyVAtnrKO"
 
 getgenv().AEConfig = {
     ["Summon At Gems"] = 10000,
-    ["Set FPS"] = 60,
+    ["Set FPS"] = 0, -- 0 = no FPS cap
 
     ["Target Summon"] = {
         ["Enabled"] = true,
         ["Start Gems"] = 10000,
         ["Before Raids"] = true,
-        ["Fallback"] = "Farm Kenpachi",
+        ["Fallback"] = "Farm Kenpachi", -- "Farm Kenpachi" or "Farm Gems"
     },
 
     ["Target Units"] = {
-        ["Shadow"] = 10,
+        ["Shadow"] = 2,
     },
 
-    -- After obtaining Megumi, farm to an account Level or Gems target.
     ["After Unit Farm"] = {
-        ["Enabled"] = true,
+        ["Enabled"] = false,
         ["Unit"] = "Megumi",
-        ["Goal"] = "Gems", -- "Level" or "Gems"
-        ["Target"] = 100000,
+        ["Goal"] = "Level", -- "Level" or "Gems"
+        ["Target"] = 50,
     },
 
     ["Raids"] = true,
-    ["Raid Minimum Level"] = 50,
+    ["Raid Minimum Level"] = 70,
 
     ["Raid Equipment"] = {
         ["Enabled"] = true,
     },
 
+    ["Villain Event"] = {
+        ["Enabled"] = true,
+
+        -- Farms Villain Invasion Act 1 until this balance.
+        ["Target Coins"] = 5000,
+
+        -- "Summon" uses the Villain Banner.
+        -- "Shop" purchases the configured shop items.
+        ["Spend Coins"] = "Summon",
+
+        -- Used only when Spend Coins is "Summon".
+        ["Summon Amount"] = 10,
+
+        -- Stops summoning after owning every requested unit count.
+        -- Leave empty for coin-based summoning without a unit target.
+        ["Target Units"] = {
+            -- ["VILLAIN_UNIT_NAME"] = 1,
+            -- ["SECOND_VILLAIN_UNIT"] = 2,
+        },
+
+        -- Used only when Spend Coins is "Shop".
+        ["Shop"] = {
+            ["Items"] = {
+                ["Cursed Book"] = 0,
+                ["Trait Crystal"] = 0,
+            },
+        },
+    },
+
     ["Trait Rerolls"] = {
         ["Enabled"] = true,
+
         ["Targets"] = {
             ["Kenpachi"] = { "Unbound" },
             ["Shadow"] = { "Unbound" },
@@ -40,7 +69,7 @@ getgenv().AEConfig = {
 
     ["Webhook"] = {
         ["Webhook URL"] = "https://discord.com/api/webhooks/1530522410409922581/G2w_ul_wURlOtTJn5OSIMXV4zE0cD8rfReptx_GcnBAI8LUXF9aj42_ZXuJOE2Dy9Yf2",
-        ["ID"] = {1464473600940838997},
+        ["ID"] = {},
         ["Rewards Logger"] = true,
 
         ["Notify Units"] = {
