@@ -58,7 +58,7 @@ _G.VenozConfig = {
     --   อยู่ lobby -> เอา gold ซื้อ Trait Crystal (ช่อง 6, ราคา 5,000/อัน) จนหมดสต็อก/gold ไม่พอ
     --   เปิดคู่กับ Reroll ได้เลย: ซื้อคริสตัล -> รีโรลหา Unbound อัตโนมัติ
     ------------------------------------------------------------
-    BuyTraitCrystal = true,  -- true = เอา gold ซื้อ Trait Crystal จนหมดสต็อก | false = ปิด
+    BuyTraitCrystal = false,  -- true = เอา gold ซื้อ Trait Crystal จนหมดสต็อก | false = ปิด
     BuyTraitKeepGold = 0,     -- กัน gold สำรองไว้เท่านี้ (0 = ใช้จนหมด)
 
     ------------------------------------------------------------
