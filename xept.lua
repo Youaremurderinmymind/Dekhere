@@ -1,12 +1,12 @@
 script_key = "GQuLsGHhekqCzSMgjKmAOMBEyVAtnrKO"
 
 getgenv().AEConfig = {
-    ["Summon At Gems"] = 100000,
+    ["Summon At Gems"] = 50000,
     ["Set FPS"] = 0, -- 0 = no FPS cap
 
     ["Target Summon"] = {
-        ["Enabled"] = false,
-        ["Start Gems"] = 100000,
+        ["Enabled"] = true,
+        ["Start Gems"] = 50000,
         ["Before Raids"] = true,
         ["Fallback"] = "Farm Kenpachi", -- "Farm Kenpachi" or "Farm Gems"
     },
