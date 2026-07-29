@@ -43,8 +43,8 @@ getgenv().Key = "ef2905d9dfc123e273d49e0a"
             ["Fragment"] = 50000,
         },
         ["Auto Chat"] = {
-            ["Enabled"] = false,
-            ["Text"] = "Config that cut tay",
+            ["Enabled"] = True,
+            ["Text"] = "Config By Xept",
         },
         ["Auto Summon Rip Indra"] = true, --- auto buy haki and craft haki legendary 
         ["Select Hop"] = { -- 70% will have it
