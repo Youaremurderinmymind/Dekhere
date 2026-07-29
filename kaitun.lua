@@ -1,10 +1,10 @@
 repeat wait() until game:IsLoaded() and game.Players.LocalPlayer
 getgenv().Key = "ef2905d9dfc123e273d49e0a"
     getgenv().SettingFarm ={
-        ["Multiple Attack"] = false, --// this is fast attack added by me
-        ["Hide UI"] = false,
+        ["Multiple Attack"] = true, --// this is fast attack added by me
+        ["Hide UI"] = true,
         ["Reset Teleport"] = {
-            ["Enabled"] = false,
+            ["Enabled"] = true,
             ["Delay Reset"] = 3,
             ["Item Dont Reset"] = {
                 ["Fruit"] = {
@@ -20,7 +20,7 @@ getgenv().Key = "ef2905d9dfc123e273d49e0a"
         ["White Screen"] = false,
         ["Lock Fps"] = {
             ["Enabled"] = true,
-            ["FPS"] = 30,
+            ["FPS"] = 60,
         },
         ["Get Items"] = {
             ["Saber"] = true,
@@ -33,9 +33,9 @@ getgenv().Key = "ef2905d9dfc123e273d49e0a"
             ["Shark Anchor"] = true, --- if have cdk,sg,godhuman
         },
         ["Get Rare Items"] = {
-            ["Rengoku"] = false,
-            ["Dragon Trident"] = false, 
-            ["Pole (1st Form)"] = false,
+            ["Rengoku"] = true,
+            ["Dragon Trident"] = true, 
+            ["Pole (1st Form)"] = true,
             ["Gravity Blade"]  = true,
         },
         ["Farm Fragments"] = {
@@ -58,7 +58,7 @@ getgenv().Key = "ef2905d9dfc123e273d49e0a"
             ["Hop Find Mirage [ Pull Lever ]"] = true,
         },
         ["Farm Mastery"] = {
-            ["Melee"] = false,
+            ["Melee"] = true,
             ["Sword"] = true,
         },
         ["Buy Haki"] = {
@@ -74,7 +74,7 @@ getgenv().Key = "ef2905d9dfc123e273d49e0a"
         ["Lock Fruit"] = {},
         ["Webhook"] = {
             ["Enabled"] = true,
-            ["WebhookUrl"] = "https://discord.com/api/webhooks/1521062740809093204/41Uf_1zrFZK-QI3oNN_lhPVVuG7BN2zOssYUKpiW5sR2Vpgcg5CHmCR0EOV1zuvCmBzJ",
+            ["WebhookUrl"] = "https://discord.com/api/webhooks/1531850058562146344/wGGvF4zePgZgqqhH0WDWGYHldhv8b_3WTSkRKFoirb30nwM4TB8J8FkFPRj333mP3ZDj",
         }
     }
 loadstring(game:HttpGet("https://raw.githubusercontent.com/obiiyeuem/vthangsitink/main/BananaCat-kaitunBF.lua"))()
