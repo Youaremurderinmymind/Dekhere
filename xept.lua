@@ -2,7 +2,7 @@ script_key = "GQuLsGHhekqCzSMgjKmAOMBEyVAtnrKO"
 
 getgenv().AEConfig = {
     ["Summon At Gems"] = 50000,
-    ["Set FPS"] = 0, -- 0 = no FPS cap
+    ["Set FPS"] = 100, -- 0 = no FPS cap
 
     ["Target Summon"] = {
         ["Enabled"] = true,
