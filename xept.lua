@@ -5,7 +5,7 @@ getgenv().AEConfig = {
     ["Set FPS"] = 100, -- 0 = no FPS cap
 
     ["Target Summon"] = {
-        ["Enabled"] = true,
+        ["Enabled"] = false,
         ["Start Gems"] = 50000,
         ["Before Raids"] = true,
         ["Fallback"] = "Farm Kenpachi", -- "Farm Kenpachi" or "Farm Gems"
@@ -19,10 +19,10 @@ getgenv().AEConfig = {
         ["Enabled"] = true,
         ["Unit"] = "Megumi",
         ["Goal"] = "gems", -- "Level" or "Gems"
-        ["Target"] = 100000,
+        ["Target"] = 50000,
     },
 
-    ["Raids"] = false,
+    ["Raids"] = true,
     ["Raid Minimum Level"] = 70,
 
     ["Raid Equipment"] = {
@@ -33,14 +33,14 @@ getgenv().AEConfig = {
         ["Enabled"] = true,
 
         -- Farms Villain Invasion Act 1 until this balance.
-        ["Target Coins"] = 5000,
+        ["Target Coins"] = 10000,
 
         -- "Summon" uses the Villain Banner.
         -- "Shop" purchases the configured shop items.
-        ["Spend Coins"] = "Summon",
+        ["Spend Coins"] = "shop",
 
         -- Used only when Spend Coins is "Summon".
-        ["Summon Amount"] = 10,
+        ["Summon Amount"] = 50,
 
         -- Stops summoning after owning every requested unit count.
         -- Leave empty for coin-based summoning without a unit target.
@@ -53,7 +53,7 @@ getgenv().AEConfig = {
         ["Shop"] = {
             ["Items"] = {
                 ["Cursed Book"] = 0,
-                ["Trait Crystal"] = 0,
+                ["Trait Crystal"] = 25,
             },
         },
     },
